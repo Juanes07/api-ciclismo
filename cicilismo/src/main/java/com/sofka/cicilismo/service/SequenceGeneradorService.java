@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.ReactiveMongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
@@ -13,6 +14,7 @@ import java.util.Objects;
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 
 
+@Service
 public class SequenceGeneradorService {
 
     @Autowired
@@ -24,7 +26,9 @@ public class SequenceGeneradorService {
         Update update = new Update().inc("seq",1);
 
         Mono<DbSequence> counter = reactiveMongoOperations
-                .findAndModify(query,update,options().returnNew(true).upsert(true),DbSequence.class);
+                .findAndModify(query,update,options().returnNew(true).upsert(true),
+                        DbSequence.class);
+
         return Objects.requireNonNull(counter.map(secuencia-> secuencia.getSeq()));
     }
 

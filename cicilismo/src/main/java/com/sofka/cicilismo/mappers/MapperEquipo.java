@@ -20,7 +20,7 @@ public class MapperEquipo {
         };
     }
 
-    public Function<Equipo, EquipoDTO> equipoAEquipoDTO(Object o){
+    public Function<Equipo, EquipoDTO> equipoAEquipoDTO(){
         return equipo -> {
             var equipoDto = new EquipoDTO();
             equipoDto.setId(equipo.getId());

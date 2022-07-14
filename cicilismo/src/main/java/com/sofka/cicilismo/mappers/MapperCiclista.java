@@ -21,7 +21,7 @@ public class MapperCiclista {
     }
 
 
-    public Function<Ciclista, CiclistaDTO> ciclistaACiclistaDtio(Object o){
+    public Function<Ciclista, CiclistaDTO> ciclistaACiclistaDTO(){
         return ciclista -> {
             var ciclistaDTO = new CiclistaDTO();
             ciclistaDTO.setId(ciclista.getId());
