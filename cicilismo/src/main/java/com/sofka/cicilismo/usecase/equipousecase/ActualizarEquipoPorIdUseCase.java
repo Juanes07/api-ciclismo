@@ -12,13 +12,13 @@ import java.util.Objects;
 
 @Service
 @Validated
-public class ActualizarEquipoUseCase implements GuardarEquipo {
+public class ActualizarEquipoPorIdUseCase implements GuardarEquipo {
 
     private final EquipoRepository equipoRepository;
 
     private final MapperEquipo mapperEquipo;
 
-    public ActualizarEquipoUseCase(EquipoRepository equipoRepository, MapperEquipo mapperEquipo) {
+    public ActualizarEquipoPorIdUseCase(EquipoRepository equipoRepository, MapperEquipo mapperEquipo) {
         this.equipoRepository = equipoRepository;
         this.mapperEquipo = mapperEquipo;
     }
