@@ -1,4 +1,4 @@
-package com.sofka.cicilismo.usecase.ciclistausecase;
+package com.sofka.cicilismo.usecases.ciclistausecase;
 
 
 import com.sofka.cicilismo.mappers.MapperCiclista;
@@ -29,6 +29,7 @@ public class ActualizarCiclistaPorIdUseCase implements GuardarCiclista {
         Objects.requireNonNull(ciclistaDTO.getId(), "el id del ciclista es necesario");
         return ciclistaRepository
                 .save(mapperCiclista.ciclistaDTOACiclista(ciclistaDTO.getId())
-                        .apply(ciclistaDTO)).thenReturn(ciclistaDTO);
+                        .apply(ciclistaDTO))
+                .thenReturn(ciclistaDTO);
     }
 }

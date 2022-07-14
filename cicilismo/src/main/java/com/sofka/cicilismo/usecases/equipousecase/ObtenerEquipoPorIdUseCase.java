@@ -1,30 +1,31 @@
-package com.sofka.cicilismo.usecase.equipousecase;
+package com.sofka.cicilismo.usecases.equipousecase;
 
 import com.sofka.cicilismo.mappers.MapperEquipo;
 import com.sofka.cicilismo.models.EquipoDTO;
 import com.sofka.cicilismo.repository.EquipoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 @Service
 @Validated
-public class ObtenerEquiposUseCase implements Supplier<Flux<EquipoDTO>> {
+public class ObtenerEquipoPorIdUseCase implements Function<String, Mono<EquipoDTO>> {
 
     private final EquipoRepository equipoRepository;
 
     private final MapperEquipo mapperEquipo;
 
-    public ObtenerEquiposUseCase(EquipoRepository equipoRepository, MapperEquipo mapperEquipo) {
+    public ObtenerEquipoPorIdUseCase(EquipoRepository equipoRepository, MapperEquipo mapperEquipo) {
         this.equipoRepository = equipoRepository;
         this.mapperEquipo = mapperEquipo;
     }
 
     @Override
-    public Flux<EquipoDTO> get() {
-        return equipoRepository.findAll()
+    public Mono<EquipoDTO> apply(String id) {
+        return equipoRepository
+                .findById(Integer.parseInt(id))
                 .map(mapperEquipo.equipoAEquipoDTO());
     }
 }

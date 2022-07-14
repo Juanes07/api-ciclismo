@@ -1,4 +1,4 @@
-package com.sofka.cicilismo.usecase.ciclistausecase;
+package com.sofka.cicilismo.usecases.ciclistausecase;
 
 import com.sofka.cicilismo.mappers.MapperCiclista;
 import com.sofka.cicilismo.models.CiclistaDTO;
@@ -7,24 +7,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 @Service
 @Validated
-public class ObtenerCiclistasPorIdEquipoUseCase implements Function<String, Flux<CiclistaDTO>> {
-
+public class ObtenerCiclistasUseCase implements Supplier<Flux<CiclistaDTO>> {
     private final CiclistaRepository ciclistaRepository;
 
     private final MapperCiclista mapperCiclista;
 
-    public ObtenerCiclistasPorIdEquipoUseCase(CiclistaRepository ciclistaRepository, MapperCiclista mapperCiclista) {
+    public ObtenerCiclistasUseCase(CiclistaRepository ciclistaRepository, MapperCiclista mapperCiclista) {
         this.ciclistaRepository = ciclistaRepository;
         this.mapperCiclista = mapperCiclista;
     }
 
+
     @Override
-    public Flux<CiclistaDTO> apply(String id) {
-        return ciclistaRepository.findAllByIdEquipo(Integer.parseInt(id))
-                .map(ciclista -> mapperCiclista.ciclistaACiclistaDTO().apply(ciclista));
+    public Flux<CiclistaDTO> get() {
+        return ciclistaRepository.findAll().map(mapperCiclista.ciclistaACiclistaDTO());
     }
 }

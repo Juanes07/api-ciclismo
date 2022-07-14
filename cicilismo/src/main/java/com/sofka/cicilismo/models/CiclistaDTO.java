@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor
@@ -19,8 +20,7 @@ public class CiclistaDTO {
     @NotBlank(message = "El ciclista debe tener un nombre")
     private String nombreCiclista;
 
-    @Length(max = 3,message = "el codigo del ciclista debe ser maximo 3 caracteres")
-    @NotBlank(message = "el codigo del ciclista no puede estar vacio")
+
     private Integer numeroCompetidor;
 
     @NotBlank(message = "el ciclista debe tener una nacionalidad")

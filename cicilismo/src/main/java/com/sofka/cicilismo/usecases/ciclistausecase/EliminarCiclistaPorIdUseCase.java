@@ -1,8 +1,7 @@
-package com.sofka.cicilismo.usecase.ciclistausecase;
+package com.sofka.cicilismo.usecases.ciclistausecase;
 
 import com.sofka.cicilismo.collection.Ciclista;
 import com.sofka.cicilismo.mappers.MapperCiclista;
-import com.sofka.cicilismo.models.CiclistaDTO;
 import com.sofka.cicilismo.repository.CiclistaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

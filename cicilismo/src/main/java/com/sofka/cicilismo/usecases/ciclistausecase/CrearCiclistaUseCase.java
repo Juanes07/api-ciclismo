@@ -1,4 +1,4 @@
-package com.sofka.cicilismo.usecase.ciclistausecase;
+package com.sofka.cicilismo.usecases.ciclistausecase;
 
 
 import com.sofka.cicilismo.mappers.MapperCiclista;
@@ -17,8 +17,6 @@ import static com.sofka.cicilismo.collection.Ciclista.SEQUENCE_CICLISTA;
 @Validated
 public class CrearCiclistaUseCase implements GuardarCiclista {
 
-    private final EquipoRepository equipoRepository;
-
     private final CiclistaRepository ciclistaRepository;
 
     private final MapperCiclista mapperCiclista;
@@ -26,8 +24,8 @@ public class CrearCiclistaUseCase implements GuardarCiclista {
     private final SequenceGeneradorService service;
 
 
-    public CrearCiclistaUseCase(EquipoRepository equipoRepository, CiclistaRepository ciclistaRepository, MapperCiclista mapperCiclista, SequenceGeneradorService service) {
-        this.equipoRepository = equipoRepository;
+    public CrearCiclistaUseCase( CiclistaRepository ciclistaRepository, MapperCiclista mapperCiclista, SequenceGeneradorService service) {
+
         this.ciclistaRepository = ciclistaRepository;
         this.mapperCiclista = mapperCiclista;
         this.service = service;
@@ -35,14 +33,15 @@ public class CrearCiclistaUseCase implements GuardarCiclista {
 
     @Override
     public Mono<CiclistaDTO> apply(CiclistaDTO ciclistaDTO) {
-        return service.getSequenceNumber(SEQUENCE_CICLISTA).flatMap(id->{
+        return service.getSequenceNumber(SEQUENCE_CICLISTA).flatMap(id-> {
             ciclistaDTO.setId(id.intValue());
-            return equipoRepository.findById(ciclistaDTO.getIdEquipo())
-                    .flatMap(equipo -> {
-                        return ciclistaRepository
-                                .save(mapperCiclista.ciclistaDTOACiclista(null).apply(ciclistaDTO))
-                                .thenReturn(ciclistaDTO);
-                    });
+            if(ciclistaDTO.getNumeroCompetidor().toString().length() <=3){
+                return ciclistaRepository
+                        .save(mapperCiclista.ciclistaDTOACiclista(null).apply(ciclistaDTO))
+                        .thenReturn(ciclistaDTO);
+            } else {
+               return Mono.error(new Exception("el numero del ciclista no debe ser mayor a 3 digitos"));
+            }
         });
     }
 }

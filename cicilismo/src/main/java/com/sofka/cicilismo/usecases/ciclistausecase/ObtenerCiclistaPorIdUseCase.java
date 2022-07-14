@@ -1,4 +1,4 @@
-package com.sofka.cicilismo.usecase.ciclistausecase;
+package com.sofka.cicilismo.usecases.ciclistausecase;
 
 import com.sofka.cicilismo.mappers.MapperCiclista;
 import com.sofka.cicilismo.models.CiclistaDTO;

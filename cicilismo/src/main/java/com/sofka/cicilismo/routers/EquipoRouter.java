@@ -1,14 +1,13 @@
-package com.sofka.cicilismo.router;
+package com.sofka.cicilismo.routers;
 
 
 import com.sofka.cicilismo.models.EquipoDTO;
-import com.sofka.cicilismo.usecase.equipousecase.*;
+import com.sofka.cicilismo.usecases.equipousecase.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;

@@ -1,4 +1,4 @@
-package com.sofka.cicilismo.usecase.equipousecase;
+package com.sofka.cicilismo.usecases.equipousecase;
 
 import com.sofka.cicilismo.mappers.MapperEquipo;
 import com.sofka.cicilismo.models.EquipoDTO;
