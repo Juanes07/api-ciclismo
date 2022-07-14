@@ -28,9 +28,10 @@ public class CrearEquipoUseCase implements GuardarEquipo {
         this.service = service;
     }
 
+
     @Override
     public Mono<EquipoDTO> apply(EquipoDTO nuevoEquipo) {
-        return service.getSequenceNumber(SEQUENCE_EQUIPO).flatMap(id->{
+        return service.getSequenceNumber(SEQUENCE_EQUIPO).flatMap(id -> {
             nuevoEquipo.setId(id.intValue());
             return equipoRepository.
                     save(mapperEquipo.equipoDTOAEquipo(null).apply(nuevoEquipo))

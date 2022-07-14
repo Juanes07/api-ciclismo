@@ -3,6 +3,7 @@ package com.sofka.cicilismo.collection;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -18,12 +19,14 @@ public class Ciclista {
 
     private String nombreCiclista;
 
+    @Indexed(unique = true)
     private Integer numeroCompetidor;
 
     private String nacionalidad;
 
 
-    public Ciclista() {}
+    public Ciclista() {
+    }
 
 
     public Ciclista(Integer id, Integer idEquipo, String nombreCiclista, Integer numeroCompetidor, String nacionalidad) {

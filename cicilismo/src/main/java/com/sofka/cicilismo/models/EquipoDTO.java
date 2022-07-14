@@ -6,6 +6,10 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.data.mongodb.core.index.Indexed;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
