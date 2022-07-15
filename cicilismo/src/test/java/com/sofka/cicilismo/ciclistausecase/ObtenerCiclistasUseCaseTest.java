@@ -36,12 +36,12 @@ class ObtenerCiclistasUseCaseTest {
         when(ciclistaRepository.findAll()).thenReturn(Flux.just(ciclista));
 
         StepVerifier.create(obtenerCiclistasUseCase.get())
-                .expectNextMatches(ciclistaDTO -> {
-                    assert ciclistaDTO.getId().equals(ciclistaDTO.getId());
-                    assert ciclistaDTO.getIdEquipo().equals(ciclistaDTO.getIdEquipo());
-                    assert ciclistaDTO.getNombreCiclista().equals(ciclistaDTO.getNombreCiclista());
-                    assert ciclistaDTO.getNumeroCompetidor().equals(ciclistaDTO.getNumeroCompetidor());
-                    assert ciclistaDTO.getNacionalidad().equals(ciclistaDTO.getNacionalidad());
+                .expectNextMatches(competidor -> {
+                    assert competidor.getId().equals(ciclista.getId());
+                    assert competidor.getIdEquipo().equals(ciclista.getIdEquipo());
+                    assert competidor.getNombreCiclista().equals(ciclista.getNombreCiclista());
+                    assert competidor.getNumeroCompetidor().equals(ciclista.getNumeroCompetidor());
+                    assert competidor.getNacionalidad().equals(ciclista.getNacionalidad());
                     return true;
                 }).expectComplete();
 

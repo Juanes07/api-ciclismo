@@ -45,12 +45,12 @@ class ObtenerCiclistaPorIdUseCaseTest {
         when(ciclistaRepository.findById(1)).thenReturn(Mono.just(ciclista));
 
         StepVerifier.create(obtenerCiclistaPorIdUseCase.apply("1"))
-                .expectNextMatches(ciclistaDTO -> {
-                    assert ciclistaDto.getId().equals(ciclistaDTO.getId());
-                    assert ciclistaDto.getIdEquipo().equals(ciclistaDTO.getIdEquipo());
-                    assert ciclistaDto.getNombreCiclista().equals(ciclistaDTO.getNombreCiclista());
-                    assert ciclistaDto.getNumeroCompetidor().equals(ciclistaDTO.getNumeroCompetidor());
-                    assert ciclistaDto.getNacionalidad().equals(ciclistaDTO.getNacionalidad());
+                .expectNextMatches(competidor -> {
+                    assert ciclistaDto.getId().equals(competidor.getId());
+                    assert ciclistaDto.getIdEquipo().equals(competidor.getIdEquipo());
+                    assert ciclistaDto.getNombreCiclista().equals(competidor.getNombreCiclista());
+                    assert ciclistaDto.getNumeroCompetidor().equals(competidor.getNumeroCompetidor());
+                    assert ciclistaDto.getNacionalidad().equals(competidor.getNacionalidad());
                     return true;
                 }).expectComplete();
 
